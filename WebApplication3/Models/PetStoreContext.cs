@@ -11,6 +11,5 @@ namespace WebApplication3.Models
         public DbSet<Pets> Pets { get; set; }
         public DbSet<Customers> Customers { get; set; }
         public DbSet<Orders> Orders { get; set; }
-        public DbSet<OrderItems> OrderItems { get; set; }
     }
 }

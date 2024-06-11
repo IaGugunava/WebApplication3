@@ -19,13 +19,13 @@ namespace WebApplication3.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Orders>>> GetOrders()
         {
-            return await _context.Orders.Include(o => o.OrderItems).ToListAsync();
+            return await _context.Orders.ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Orders>> GetOrder(int id)
         {
-            var order = await _context.Orders.Include(o => o.OrderItems).FirstOrDefaultAsync(o => o.OrderId == id);
+            var order = await _context.Orders.FirstOrDefaultAsync(o => o.OrderId == id);
 
             if (order == null)
             {

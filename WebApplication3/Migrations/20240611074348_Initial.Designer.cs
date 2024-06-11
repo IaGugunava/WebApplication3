@@ -12,8 +12,8 @@ using WebApplication3.Models;
 namespace WebApplication3.Migrations
 {
     [DbContext(typeof(PetStoreContext))]
-    [Migration("20240609214526_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240611074348_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,32 +48,6 @@ namespace WebApplication3.Migrations
                     b.HasKey("CustomerId");
 
                     b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("WebApplication3.Models.OrderItems", b =>
-                {
-                    b.Property<int>("OrderItemId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderItemId"));
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PetId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrderItemId");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("PetId");
-
-                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("WebApplication3.Models.Orders", b =>
@@ -131,25 +105,6 @@ namespace WebApplication3.Migrations
                     b.ToTable("Pets");
                 });
 
-            modelBuilder.Entity("WebApplication3.Models.OrderItems", b =>
-                {
-                    b.HasOne("WebApplication3.Models.Orders", "Order")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebApplication3.Models.Pets", "Pet")
-                        .WithMany()
-                        .HasForeignKey("PetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Pet");
-                });
-
             modelBuilder.Entity("WebApplication3.Models.Orders", b =>
                 {
                     b.HasOne("WebApplication3.Models.Customers", "Customer")
@@ -159,11 +114,6 @@ namespace WebApplication3.Migrations
                         .IsRequired();
 
                     b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("WebApplication3.Models.Orders", b =>
-                {
-                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }

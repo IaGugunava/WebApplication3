@@ -12,6 +12,5 @@ namespace WebApplication3.Models
         public decimal TotalPrice { get; set; }
         [ForeignKey("CustomerId")]
         public Customers Customer { get; set; }
-        public ICollection<OrderItems> OrderItems { get; set; }
     }
 }
